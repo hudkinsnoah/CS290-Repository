@@ -6,7 +6,7 @@ app.use(express.static('public'));
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 7959);
+app.set('port', 7951);
 
 
 app.get('/', function(req,res){
@@ -16,17 +16,17 @@ app.get('/', function(req,res){
 
 app.get('/lawn', function(req,res){
 	res.status(200);
-	res.render('page1')
+	res.render('Page1')
 });
 
 app.get('/flowers', function(req, res){
 	res.status(200)
-	res.render('page2')
+	res.render('Page2')
 });
 
 app.get('/landscape', function(req,res){
 	res.status(200)
-	res.render('page3')
+	res.render('Page3')
 });
 
 
