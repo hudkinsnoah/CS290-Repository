@@ -23,7 +23,12 @@ app.get('/',function(req,res,next){
 });
 
 app.post('/', function(req,res,next){
+<<<<<<< HEAD
   mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES('DB curl', 14, 45, 2000-04-05, 1)",
+=======
+	var context = {};
+  mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, pounds) VALUES('row', 4, 10, 03-04-2021, 1)",
+>>>>>>> parent of 048fd64 (Update main.js)
     function(err, result){
     if(err){
       next(err);
