@@ -30,16 +30,6 @@ app.post('/', function(req,res,next){
       return;
     }
     res.render('home',context);
-
-    mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
-    if(err){
-      next(err);
-      return;
-    }
-    context.results = JSON.stringify(rows);
-    res.render('home', context);
-  });
-  });
 });
 
 app.get('/reset-table',function(req,res,next){
