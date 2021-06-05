@@ -18,7 +18,8 @@ app.get('/',function(req,res,next){
       return;
     }
     context.results = JSON.stringify(rows);
-    res.render('home', context);
+    context.table = 
+    res.render('', context);
   });
 });
 
@@ -37,7 +38,7 @@ app.post('/', function(req,res,next){
 
 app.get('/reset-table',function(req,res,next){
   var context = {};
-  mysql.pool.query("DROP TABLE IF EXISTS workouts", function(err){ //replace your connection pool with the your variable containing the connection pool
+  mysql.pool.query("DROP TABLE IF EXISTS workouts", function(err){
     var createString = "CREATE TABLE workouts("+
     "id INT PRIMARY KEY AUTO_INCREMENT,"+
     "name VARCHAR(255) NOT NULL,"+

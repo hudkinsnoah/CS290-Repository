@@ -1,4 +1,4 @@
-<h1>Workouts Results Results:</h1>
+<h1>Workouts Results:</h1>
 
 
 <form action = http://flip3.engr.oregonstate.edu:7957/ method="post">
@@ -12,4 +12,10 @@
  event.preventDefault();
 
 
-<p>{{results}}</p>
+<p>{{{{#each dataList}}
+     <tr>
+     <td style = "border: 1px solid black">{{this.key}}</td>
+     <td style = "border: 1px solid black">{{this.value}}</td>
+     </tr>
+  {{/each}}
+</table>}}</p>
