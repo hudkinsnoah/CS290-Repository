@@ -25,7 +25,8 @@ app.get('/',function(req,res,next){
 
 app.post('/', function(req,res,next){
 	var context = {};
-  mysql.pool.query("INSERT workouts SET name=?, reps=?, weight=?, date=?, pounds=? WHERE id = ?",
+  mysql.pool.query("INSERT workouts (name, reps, weight, date, pounds) VALUES(?, ?, ?, ?, ?)",
+        [home.name, home.reps, home.weight, home.date, home.pounds]
     [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.pounds],
     function(err, result){
     if(err){
