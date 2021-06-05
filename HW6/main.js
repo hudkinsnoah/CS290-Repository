@@ -21,7 +21,7 @@ app.get('/',function(req,res,next){
   });
 });
 
-app.get('/update', function(req,res,next){
+app.get('/', function(req,res,next){
 	var context = {};
   mysql.pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, pounds=? WHERE id = ?",
     [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.pounds],
