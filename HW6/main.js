@@ -24,13 +24,27 @@ app.get('/',function(req,res,next){
 
 app.post('/', function(req,res,next){
 	var context = {};
-  mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES('row', 4, 10, 03-04-2021, 1)",
+  context.name = document.getElementById('name').value
+  context.reps = document.getElementById('reps').value
+  context.weight = document.getElementById('weight').value
+  context.date = document.getElementById('date').value
+  context.lbs = document.getElementById('lbs').value
+  mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES(context.name, context.reps, context.weight, context.date, context.lbs)",
     function(err, result){
     if(err){
       next(err);
       return;
     }
     res.render('home',context);
+
+    mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
+    if(err){
+      next(err);
+      return;
+    }
+    context.results = JSON.stringify(rows);
+    res.render('home', context);
+  });
   });
 });
 
