@@ -23,12 +23,6 @@ app.get('/',function(req,res,next){
 });
 
 app.post('/', function(req,res,next){
-	var context = {};
-  context.name = 'row'
-  context.reps = 14
-  context.weight = 45
-  context.date = 2000-04-05
-  context.lbs = 1
   mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES('DB curl', 14, 45, 2000-04-05, 1)",
     function(err, result){
     if(err){
