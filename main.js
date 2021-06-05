@@ -1,32 +1,46 @@
 var express = require('express');
+var mysql = require('./dbcon.js');
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
-app.use(express.static('public'));
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 7951);
+app.set('port', 7957);
 
 
-app.get('/', function(req,res){
-	res.status(200);
-	res.render('main')
+app.get('/',function(req,res,next){
+  var context = {};
+  mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
+    if(err){
+      next(err);
+      return;
+    }
+    context.results = JSON.stringify(rows);
+    res.send('home', context);
+  });
 });
 
-app.get('/lawn', function(req,res){
-	res.status(200);
-	res.render('Page1')
-});
+app.get('/', function(req,res,next){
+	var context = {}
+	mysql.pool.query("")
+})
 
-app.get('/flowers', function(req, res){
-	res.status(200)
-	res.render('Page2')
-});
-
-app.get('/landscape', function(req,res){
-	res.status(200)
-	res.render('Page3')
+app.get('/reset-table',function(req,res,next){
+  var context = {};
+  mysql.pool.query("DROP TABLE IF EXISTS workouts", function(err){ //replace your connection pool with the your variable containing the connection pool
+    var createString = "CREATE TABLE workouts("+
+    "id INT PRIMARY KEY AUTO_INCREMENT,"+
+    "name VARCHAR(255) NOT NULL,"+
+    "reps INT,"+
+    "weight INT,"+
+    "date DATE,"+
+    "lbs BOOLEAN)";
+    mysql.pool.query(createString, function(err){
+      context.results = "Table reset";
+      res.render('home',context);
+    })
+  });
 });
 
 
@@ -37,7 +51,6 @@ app.use(function(req,res){
 
 app.use(function(err, req, res, next){
   console.error(err.stack);
-  res.type('plain/text');
   res.status(500);
   res.render('500');
 });
