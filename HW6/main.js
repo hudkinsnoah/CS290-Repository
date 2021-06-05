@@ -29,7 +29,7 @@ app.post('/', function(req,res,next){
   context.weight = 45
   context.date = 2000-04-05
   context.lbs = 1
-  mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES(context.name, context.reps, context.weight, context.date, context.lbs)",
+  mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES('DB curl', 14, 45, 2000-04-05, 1)",
     function(err, result){
     if(err){
       next(err);
