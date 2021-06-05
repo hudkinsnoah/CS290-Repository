@@ -19,7 +19,7 @@ app.get('/',function(req,res,next){
     }
     context.results = JSON.stringify(rows);
     context.table = 
-    res.render('', context);
+    res.render('home', context);
   });
 });
 
