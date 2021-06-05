@@ -18,16 +18,13 @@ app.get('/',function(req,res,next){
       return;
     }
     context.results = JSON.stringify(rows);
-    context.table = 
     res.render('home', context);
   });
 });
 
 app.post('/', function(req,res,next){
 	var context = {};
-  mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, pounds) VALUES(?, ?, ?, ?, ?)",
-        [home.name, home.reps, home.weight, home.date, home.pounds]
-    [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.pounds],
+  mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, pounds) VALUES(row, 4, 10, 03-04-2021, 1)",
     function(err, result){
     if(err){
       next(err);
