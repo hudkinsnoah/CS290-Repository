@@ -30,6 +30,7 @@ app.post('/', function(req,res,next){
       return;
     }
     res.render('home',context);
+  });
 });
 
 app.get('/reset-table',function(req,res,next){
