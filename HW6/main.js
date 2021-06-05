@@ -1,6 +1,5 @@
 var express = require('express');
 var mysql = require('./dbcon.js');
-var home = require('./views/home.handlebars')
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
