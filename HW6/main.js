@@ -24,11 +24,11 @@ app.get('/',function(req,res,next){
 
 app.post('/', function(req,res,next){
 	var context = {};
-  context.name = main.getElementById('name').value
-  context.reps = main.getElementById('reps').value
-  context.weight = main.getElementById('weight').value
-  context.date = main.getElementById('date').value
-  context.lbs = main.getElementById('lbs').value
+  context.name = main.handlebars.getElementById('name').value
+  context.reps = main.handlebars.getElementById('reps').value
+  context.weight = main.handlebars.getElementById('weight').value
+  context.date = main.handlebars.getElementById('date').value
+  context.lbs = main.handlebars.getElementById('lbs').value
   mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES(context.name, context.reps, context.weight, context.date, context.lbs)",
     function(err, result){
     if(err){
