@@ -9,6 +9,7 @@ app.set('view engine', 'handlebars');
 app.set('port', 7957);
 
 
+
 app.get('/',function(req,res,next){
   var context = {};
   mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
@@ -21,9 +22,9 @@ app.get('/',function(req,res,next){
   });
 });
 
-app.get('/', function(req,res,next){
+app.post('/', function(req,res,next){
 	var context = {};
-  mysql.pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, pounds=? WHERE id = ?",
+  mysql.pool.query("INSERT workouts SET name=?, reps=?, weight=?, date=?, pounds=? WHERE id = ?",
     [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.pounds],
     function(err, result){
     if(err){
