@@ -11,7 +11,7 @@ app.set('port', 7957);
 
 app.get('/',function(req,res,next){
   var context = {};
-  mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, pounds) VALUES (row, 1, 40, 03-05-2018)")
+  mysql.pool("INSERT INTO workouts (name, reps, weight, date, pounds) VALUES (row, 1, 40, 03-05-2018)")
   mysql.pool.query('SELECT * FROM workouts', function(err, rows, fields){
     if(err){
       next(err);
