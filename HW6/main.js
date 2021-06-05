@@ -23,14 +23,13 @@ app.get('/',function(req,res,next){
 
 app.get('/', function(req,res,next){
 	var context = {};
-  mysql.pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, pounds=? WHERE id = ?",
+  mysql.pool.query("INSERT INTO workouts SET name=?, reps=?, weight=?, date=?, pounds=? WHERE id = ?",
     [req.query.name, req.query.reps, req.query.weight, req.query.date, req.query.pounds],
     function(err, result){
     if(err){
       next(err);
       return;
     }
-    context.results = "Updated " + result.changedRows + " rows.";
     res.render('home',context);
   });
 });
