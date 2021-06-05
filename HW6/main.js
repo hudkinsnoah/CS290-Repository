@@ -1,5 +1,6 @@
 var express = require('express');
 var mysql = require('./dbcon.js');
+var home = require('./views/home.handlebars')
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
@@ -24,11 +25,11 @@ app.get('/',function(req,res,next){
 
 app.post('/', function(req,res,next){
 	var context = {};
-  context.name = name.value
-  context.reps = reps.value
-  context.weight = weight.value
-  context.date = date.value
-  context.lbs = lbs.value
+  context.name = home.name.value
+  context.reps = home.reps.value
+  context.weight = home.weight.value
+  context.date = home.value
+  context.lbs = home.value
   mysql.pool.query("INSERT INTO workouts (name, reps, weight, date, lbs) VALUES(context.name, context.reps, context.weight, context.date, context.lbs)",
     function(err, result){
     if(err){
