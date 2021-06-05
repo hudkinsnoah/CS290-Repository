@@ -9,4 +9,4 @@ var pool = mysql.createPool({
 
 module.exports.pool = pool;
 
-  mysql.pool("INSERT INTO workouts (name, reps, weight, date, pounds) VALUES (row, 1, 40, 03-05-2018)")
+  mysql("INSERT INTO workouts (name, reps, weight, date, pounds) VALUES (row, 1, 40, 03-05-2018)")
